@@ -1,0 +1,7 @@
+@import "./../../npm/wepy-com-toast/toast.wxss";
+@import "./../../components/group.wxss";
+@import "./../../components/list.wxss";
+@import "./../../components/counter.wxss";
+@import "./../../components/counter.wxss";
+@import "./../../components/panel.wxss";
+.userinfo{display:flex;flex-direction:column;align-items:center}.line{height:1px;width:100%;background-color:#E0E1E2}.item{display:flex;flex-direction:row;justify-content:space-between;padding:8rpx;margin-left:8rpx;margin-right:8rpx;margin-top:8rpx;background-color:#fff}.image{width:88rpx;height:88rpx;border-radius:44rpx;background-color:#eeeeee}.item-middle{flex:1;margin-left:10rpx;padding-top:13rpx;overflow:hidden}.title{color:#000000;font-family:"微软雅黑";font-weight:bold;line-height:20rpx;padding:32rpx 16rpx,0,16rpx;font-size:22rpx;margin-top:60rpx;overflow:hidden;text-overflow:ellipsis}.item_right{padding-top:13rpx;overflow:hidden}.time{color:#808080;font-size:18rpx}.mark{position:relative;left:15rpx;right:35rpx;padding-top:4rpx;background-color:#F74c31;text-align:center;font-size:18rpx;width:35rpx;height:35rpx;border-radius:20rpx;color:#ffffff;display:table-cell}.userinfo-avatar{width:80rpx;height:80rpx;border-radius:50%}.userinfo-nickname{color:#aaa}

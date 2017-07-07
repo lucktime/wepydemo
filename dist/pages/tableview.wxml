@@ -1,0 +1,36 @@
+
+  <view class="container">
+    <scroll-view scroll-y="true" style="height:100%"> 
+     <!-- 簡單tableview 列表渲染 -->
+        <lable class="lable_title" style="text-align:right"> Demo1</lable>
+        <view  wx:for="{{contentlist}}" wx:key="unique" style="display: block;">
+          <navigator url="/pages/component/index">
+            <label style="width:100%;height:50px;font-family:'微软雅黑'">{{item}}</label>
+            <view class="line"/>
+          </navigator>
+        </view>  
+        <block  wx:for="{{contentlist}}" wx:key="unique">
+          <navigator url="/pages/message/chat/chat">
+            <view class="item">
+              <view class="item-left">
+                    <image src="{{item.url}}" class="image"/>
+              </view>
+              <view class="item-middle">
+                    <view>
+                        <text class="title">{{item}}</text>
+                    </view>
+                    <view>
+                        <text class="message">{{item}}</text>
+                    </view>
+              </view>
+              <view class="item_right">
+                  <view><text class="time">{{item}}</text></view>
+                  <view class="mark" wx:if="{{item.count>0}}"><text class="text">{{item}}</text></view>
+              </view>
+          </view>
+          <view class="line"/>
+        </navigator>
+      </block>
+    </scroll-view> 
+
+  </view>
