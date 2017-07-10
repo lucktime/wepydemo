@@ -17,7 +17,9 @@ export default class extends wepy.app {
   config = {
     pages: [
       'pages/index',
-      'pages/tableview'
+      'pages/tableview',
+      'pages/flexlayout',
+      'pages/playmusic'
     ],
     window: {
       backgroundTextStyle: 'light',

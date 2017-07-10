@@ -1,0 +1,268 @@
+// https://github.com/icindy/wxflex
+<style lang="less">
+.Grid {
+	  display: flex;
+	}	
+/*1/3平分 网格布局 begin*/
+.Grid-cell {
+	  flex: 1;
+	  height: 30px;
+	  line-height: 30px;
+	  background-color: #efefef;
+	  text-align: center;
+	  margin: 5px 2px;
+	}
+/*1/3平分 网格布局 end*/
+
+/* 骰子布局 begin*/
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: center;
+  flex-wrap: wrap;
+  align-content: center;
+  font-family: 'Open Sans', sans-serif;
+  
+  background: linear-gradient(top, #222, #333);
+}
+
+.first-face {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.second-face {
+  display: flex;
+  justify-content: space-between;
+}
+
+.second-pip-2 {
+  align-self: flex-end;
+}
+
+.third-face {
+  display: flex;
+  justify-content: space-between;
+}
+  
+.third-pip-2 {
+  align-self: center;
+}
+
+.third-pip-3 {
+  align-self: flex-end;
+}
+
+.fourth-face, .sixth-face {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fourth-face-column, .sixth-face-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.fifth-face {
+  display: flex;
+  justify-content: space-between;
+}
+  
+.fifth-face-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+  
+.fifth-face-column-2 {
+  justify-content: center;
+}
+
+
+.face {
+  margin: 16px;
+  padding: 4px;
+  
+  background-color: #e7e7e7;
+  width: 104px;
+  height: 104px;
+  object-fit: contain;
+  
+  box-shadow:
+    inset 0 5px white, 
+    inset 0 -5px #bbb,
+    inset 5px 0 #d7d7d7, 
+    inset -5px 0 #d7d7d7;
+  
+  border-radius: 10%;
+}
+
+.pip {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin: 4px;
+
+  background-color: #333;
+  box-shadow: inset 0 3px #111, inset 0 -3px #555;
+}
+/* 骰子布局 end*/
+
+/* 百分比布局 begin*/
+.Grid {
+  display: flex;
+}
+
+.cell-u-full {
+  flex: 0 0 30%;
+}
+/* 百分比布局 end*/
+
+/* 左对齐布局 begin*/
+.LeftGrid {
+  display: flex;
+  justify-content: flex-start;
+}
+/* 右对齐布局 begin*/
+.RightGrid {
+  display: flex;
+  justify-content: flex-end;
+}
+/* 右对齐布局 begin*/
+.CenterGrid {
+  display: flex;
+  justify-content: center;
+}
+
+.cell-u-full-full {
+  flex: 0 0 100%;
+}
+.Left {
+  display: flex;
+  margin-right: 8rpx;
+}
+
+.Right {
+  flex: 0 0 30%;
+}
+/* 左对齐布局 end*/
+</style>
+<template>
+  <view class="container">
+    <text>网格布局</text>
+    <view class = 'Grid'>
+      <button  class = 'Grid-cell' type="primary" bindtap="audioPlay">播放</button>
+      <button  class = 'Grid-cell' type="primary" bindtap="audioPause">暂停</button>
+      <button  class = 'Grid-cell' type="primary" bindtap="audio14">跳转</button>
+      <button  class = 'Grid-cell' type="primary" bindtap="audioStart">开始</button>
+    </view>
+    <text>百分比布局</text>
+    <view class = 'Grid'>
+      <button  class = 'cell-u-full' type="primary" bindtap="audioPlay">播放</button>
+      <button  class = 'cell-u-full' type="primary" bindtap="audioPause">暂停</button>
+      <button  class = 'cell-u-full' type="primary" bindtap="audio14">跳转</button>
+    </view>
+    <text>骰子布局</text>
+    <view class="container">
+      <view class="first-face face">
+        <view class="pip"></view>
+      </view>
+      <view class="second-face face">
+        <view class="pip second-pip-1"></view>
+        <view class="pip second-pip-2"></view>
+      </view>
+      <view class="third-face face">
+        <view class="pip third-pip-1"></view>
+        <view class="pip third-pip-2"></view>
+        <view class="pip third-pip-3"></view>
+      </view>
+      <view class="fourth-face face">
+        <view class="fourth-face-column">
+          <view class="pip fourth-pip-1"></view>
+          <view class="pip fourth-pip-2"></view>
+        </view>
+        <view class="fourth-face-column">
+          <view class="pip fourth-pip-3"></view>
+          <view class="pip fourth-pip-4"></view>
+        </view>
+      </view>
+      <view class="fifth-face face">
+        <view class="fifth-face-column">
+          <view class="pip fifth-pip-1"></view>
+          <view class="pip fifth-pip-2"></view>
+        </view>
+        <view class="fifth-face-column fifth-face-column-2">
+          <view class="pip fifth-pip-3"></view>
+        </view>
+        <view class="fifth-face-column">
+          <view class="pip fifth-pip-4"></view>
+          <view class="pip fifth-pip-5"></view>
+        </view>
+      </view>
+      <view class="sixth-face face">
+        <view class="sixth-face-column">
+          <view class="pip sixth-pip-1"></view>
+          <view class="pip sixth-pip-2"></view>
+          <view class="pip sixth-pip-3"></view>
+        </view>
+        <view class="sixth-face-column">
+          <view class="pip sixth-pip-4"></view>
+          <view class="pip sixth-pip-5"></view>
+          <view class="pip sixth-pip-6"></view>
+        </view>
+      </view>
+    </view>
+   <!--骰子布局 end -->
+
+  </view>
+  <text class = 'LeftGrid'>左对齐布局</text>
+  <text class = 'RightGrid'>右对齐布局</text>
+  <text class = 'CenterGrid'>居中布局</text>
+  <view class = 'LeftGrid'>
+    <button  type="primary" bindtap="audioPlay">播放</button>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import List from '../components/list'
+  import Panel from '../components/panel'
+  import Counter from '../components/counter'
+  import Toast from 'wepy-com-toast'
+  import testMixin from '../mixins/test'
+
+  export default class flexlayout extends wepy.page {
+    config = {
+      navigationBarTitleText: 'tableview'
+    }
+    components = {
+      panel: Panel,
+      counter1: Counter,
+      counter2: Counter,
+      list: List,
+      toast: Toast
+    }
+    mixins = [testMixin]
+    data = {
+      poster: 'http://y.gtimg.cn/music/photo_new/T002R300x300M000003rsKF44GyaSk.jpg?max_age=2592000',
+      name: '此时此刻',
+      author: '许巍',
+      src: 'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E06DCBDC9AB7C49FD713D632D313AC4858BACB8DDD29067D3C601481D36E62053BF8DFEAF74C0A5CCFADD6471160CAF3E6A&fromtag=46'
+    }
+
+    computed = {
+    }
+
+    methods = {
+    }
+  
+    onLoad() {
+      // 使用 wx.createAudioContext 获取 audio 上下文 context
+      this.audioCtx = wepy.createAudioContext('myAudio')
+    }
+  }
+</script>

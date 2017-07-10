@@ -10,6 +10,10 @@ const hosts = {
   production: 'https://sd.iszu.cn'
 }
 
+const pages = {
+    index: 'pages/index',
+    tableview: 'pages/tableview'
+}
 // apis
 const api = {
   user: {

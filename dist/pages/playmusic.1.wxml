@@ -1,0 +1,11 @@
+
+  <view class="container">
+  <!-- audio.wxml -->
+    <audio poster="{{poster}}" name="{{name}}" author="{{author}}" src="{{src}}" id="myAudio" controls loop/>
+    <view class="Grid">
+      <button class="Grid-cell" type="primary" bindtap="audioPlay">播放</button>
+      <button class="Grid-cell" type="primary" bindtap="audioPause">暂停</button>
+      <button class="Grid-cell" type="primary" bindtap="audio14">跳转</button>
+      <button class="Grid-cell" type="primary" bindtap="audioStart">开始</button>
+    </view>
+  </view>

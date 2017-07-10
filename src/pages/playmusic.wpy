@@ -1,0 +1,92 @@
+<style lang="less">
+.Grid {
+	  display: flex;
+	}	
+/*1/3平分*/
+.Grid-cell {
+	  flex: 1;
+	  height: 30px;
+	  line-height: 30px;
+	  background-color: #efefef;
+	  text-align: center;
+	  margin: 5px 2px;
+	}
+	
+</style>
+<template>
+  <view class="container">
+  <!-- audio.wxml -->
+    <audio poster="{{poster}}" name="{{name}}" author="{{author}}" src="{{src}}" id="myAudio" controls loop></audio>
+    <view class = 'Grid'>
+      <button  class = 'Grid-cell' type="primary" bindtap="audioPlay">播放</button>
+      <button  class = 'Grid-cell' type="primary" bindtap="audioPause">暂停</button>
+      <button  class = 'Grid-cell' type="primary" bindtap="audio14">跳转</button>
+      <button  class = 'Grid-cell' type="primary" bindtap="audioStart">开始</button>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import List from '../components/list'
+  import Panel from '../components/panel'
+  import Counter from '../components/counter'
+  import Toast from 'wepy-com-toast'
+  import testMixin from '../mixins/test'
+
+  export default class playmusic extends wepy.page {
+    config = {
+      navigationBarTitleText: 'tableview'
+    }
+    components = {
+      panel: Panel,
+      counter1: Counter,
+      counter2: Counter,
+      list: List,
+      toast: Toast
+    }
+    mixins = [testMixin]
+    data = {
+      poster: 'http://y.gtimg.cn/music/photo_new/T002R300x300M000003rsKF44GyaSk.jpg?max_age=2592000',
+      name: '此时此刻',
+      author: '许巍',
+      src: 'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E06DCBDC9AB7C49FD713D632D313AC4858BACB8DDD29067D3C601481D36E62053BF8DFEAF74C0A5CCFADD6471160CAF3E6A&fromtag=46'
+    }
+
+    computed = {
+      now () {
+        return +new Date()
+      }
+    }
+
+    methods = {
+    /**
+      * 输入监听器
+      * 自动映射到 content
+      * @param {Event} e 输入事件
+      */
+      inputChange (e) {
+        this.content = e.detail.value
+        this.disabled = e.detail.value === ''
+        // console.log(this.content)
+      },
+      audioPlay: function () {
+        this.audioCtx.play()
+      },
+      audioPause: function () {
+        this.audioCtx.pause()
+      },
+      audio14: function () {
+        this.audioCtx.seek(14)
+      },
+      audioStart: function () {
+        this.audioCtx.seek(0)
+      }
+    }
+  
+    onLoad() {
+      // 使用 wx.createAudioContext 获取 audio 上下文 context
+      this.audioCtx = wepy.createAudioContext('myAudio')
+    }
+  }
+</script>
