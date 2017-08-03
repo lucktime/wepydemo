@@ -1,0 +1,14 @@
+
+  <view>
+    <lable>
+      {{'专家id：' + user_id}}
+    </lable>
+    <lable>
+      {{'用户openid：' + openid}}
+    </lable>
+  </view>
+   <textarea class="textarea" auto-focus bindinput="inputChange" maxlength="-1" placeholder="向专家提问的问题~" placeholder-style="color: #999;">
+    </textarea>
+    <button type="primary" size="default" bindtap="send" class="submit" disabled="{{ disabled }}">
+      发送
+    </button>

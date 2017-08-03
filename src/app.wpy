@@ -19,6 +19,8 @@ export default class extends wepy.app {
       'pages/index',
       'pages/tableview',
       'pages/flexlayout',
+      'pages/question',
+      'pages/success',
       'pages/playmusic'
     ],
     window: {

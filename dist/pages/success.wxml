@@ -1,0 +1,6 @@
+
+  <view>
+    <lable>
+      {{'成功提问问题'}}
+    </lable>
+  </view>

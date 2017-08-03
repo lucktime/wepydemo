@@ -1,0 +1,146 @@
+<style lang="less">
+  .textarea {
+    padding: 15px;
+    width: 100%;
+    color: #333;
+    min-height: 180px;
+    background: #FFF;
+    font-size: 16px;
+    line-height: 36px;
+  }
+  .submit {
+    width: 100%;
+    color: #FFF;
+    background: #FA6570;
+    border: none;
+  }
+</style>
+
+<template>
+  <view>
+    <lable>
+      {{'专家id：' + user_id}}
+    </lable>
+    <lable>
+      {{'用户openid：' + openid}}
+    </lable>
+  </view>
+   <textarea
+      class="textarea"
+      auto-focus
+      bindinput="inputChange"
+      maxlength="-1"
+      placeholder="向专家提问的问题~"
+      placeholder-style="color: #999;">
+    </textarea>
+    <button
+      type="primary"
+      size="default"
+      bindtap="send"
+      class="submit"
+      disabled="{{ disabled }}">
+      发送
+    </button>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import requestServer from '../request.js'
+  export default class question extends wepy.page {
+    config = {
+      navigationBarTitleText: '向专家提问'
+    }
+    data = {
+      openid: '123',
+      user_id: '1'
+    }
+    computed = {}
+    methods = {
+    /**
+     * 输入监听器
+     * 自动映射到 content
+     * @param {Event} e 输入事件
+     */
+      inputChange (e) {
+        this.content = e.detail.value
+        this.disabled = e.detail.value === ''
+      },
+      async send () {
+        console.log(this.data.openid)
+        console.log(this.content)
+        console.log(this.data.user_id)
+        var api = '/wxsmall/pushqusetiontomaster'
+        var params = {'openid': this.data.openid, 'question': this.content, 'user_id': this.data.user_id}
+        var payapi = '/paymentqr/wxsmallpay'
+        var payparams = {'openid': this.openid}
+        requestServer.POST(payapi, payparams, function(res) {
+          if (res.statusCode === 200) {
+            var data = JSON.parse(res.data)
+            console.log(data)
+            wepy.requestPayment({
+              'timeStamp': data.timeStamp,
+              'nonceStr': data.nonceStr,
+              'package': data.package,
+              'signType': data.signType,
+              'paySign': data.paySign,
+              'success': function(res) {
+                requestServer.POST(api, params, function(res) {
+                  console.log(res)
+                  if (res.data.code !== 200) {
+                  } else {
+                    wepy.navigateTo({
+                      url: 'success?user_id=1'
+                    })
+                  }
+                })
+              },
+              'fail': function(res) {
+                console.log('取消支付')
+              }
+            })
+          } else {
+          }
+        })
+      }
+    }
+    onLoad(options) {
+      var self = this
+      wepy.login({
+        success: function(res) {
+          console.log('Onload')
+          var api = '/wxsmall/dailonglogin'
+          var params = {'code': res.code}
+          requestServer.POST(api, params, function(res2) {
+            console.log(res2.data.data)
+            if (res2.data.code !== 200) {
+            } else {
+              console.log('set openid value')
+              wepy.setStorage({
+                key: 'openid',
+                data: res2.data.data
+              })
+              console.log('get openid value')
+              wepy.getStorage({
+                key: 'openid',
+                success: function(res) {
+                  console.log(res.data)
+                  self.openid = res.data
+                }
+              })
+            }
+          })
+        }
+      })
+      console.log(options.user_id)
+      if (options.user_id) {
+        console.log(options.user_id)
+        self.user_id = options.user_id
+      } else {
+        self.user_id = 2
+      }
+    }
+    onShow() {
+      console.log('OnShow')
+    }
+  }
+</script>
